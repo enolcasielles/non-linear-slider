@@ -1,5 +1,6 @@
 name: non_linear_slider
-description: A new Flutter package project.
+description: A Non Linear Slider for Flutter.
+repository: https://github.com/enolcasielles/non-linear-slider
 version: 0.0.1
 
 environment:
