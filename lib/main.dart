@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:slider_variable_interval/variable_interval_slider.dart';
+import 'package:slider_variable_interval/models/interval.dart' as nls;
+import 'package:slider_variable_interval/widgets/non_linear_slider.dart';
 
 void main() {
   runApp(MyApp());
@@ -23,31 +24,33 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  double value = 0;
+  double value = 3000;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            VariableIntervalSlider(
-              intervals: [
-                SliderInterval(0, 10, 1),
-                SliderInterval(10, 40, 3),
-                SliderInterval(40, 80, 4),
-              ],
-              divisions: 30,
-              onChanged: (sliderValue) {
-                setState(() {
-                  value = sliderValue;
-                });
-              },
-            ),
-            Text('$value'),
-          ],
+        child: Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              NonLinearSlider(
+                intervals: [
+                  nls.Interval(10, 100, 0.25),
+                  nls.Interval(100, 1000, 0.5),
+                  nls.Interval(1000, 10000, 0.25),
+                ],
+                value: value,
+                onChanged: (value) {
+                  this.value = value;
+                  setState(() {});
+                },
+                label: value.round().toString(),
+                divisions: 100,
+              ),
+              Text(value.round().toString())
+            ],
+          ),
         ),
       ),
     );
