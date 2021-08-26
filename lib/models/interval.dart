@@ -1,7 +1,7 @@
-class Interval {
+class NLSInterval {
   final double min;
   final double max;
   final double weight;
 
-  Interval(this.min, this.max, this.weight);
+  NLSInterval(this.min, this.max, this.weight);
 }

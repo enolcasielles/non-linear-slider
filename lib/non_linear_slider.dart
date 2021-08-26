@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:slider_variable_interval/models/interval.dart' as nls;
+import 'package:non_linear_slider/models/interval.dart';
 
 class NonLinearSlider extends StatelessWidget {
-  final List<nls.Interval> sliderIntervals = [];
+  final List<NLSInterval> sliderIntervals = [];
 
-  final List<nls.Interval> consumerIntervals;
+  final List<NLSInterval> consumerIntervals;
   final Function(double) onChanged;
   final double value;
   final int? divisions;
@@ -21,7 +21,7 @@ class NonLinearSlider extends StatelessWidget {
 
   NonLinearSlider({
     Key? key,
-    required List<nls.Interval> intervals,
+    required List<NLSInterval> intervals,
     required this.value,
     required this.onChanged,
     this.onChangeStart,
@@ -65,10 +65,10 @@ class NonLinearSlider extends StatelessWidget {
 
   void _setIntervals() {
     int i = 0;
-    for (final nls.Interval interval in consumerIntervals) {
+    for (final NLSInterval interval in consumerIntervals) {
       double min = i == 0 ? 0 : sliderIntervals.last.max;
       double max = min + interval.weight * 100;
-      sliderIntervals.add(nls.Interval(min, max, interval.weight));
+      sliderIntervals.add(NLSInterval(min, max, interval.weight));
       i++;
     }
   }
@@ -76,7 +76,7 @@ class NonLinearSlider extends StatelessWidget {
   void _checkIntervals() {
     double totalValue = 0;
     for(int i=0 ; i<consumerIntervals.length ; i++) {
-      final nls.Interval interval = consumerIntervals[i];
+      final NLSInterval interval = consumerIntervals[i];
       totalValue += interval.weight;
       assert(interval.min <= interval.max, 'El mínimo de un intervalo tiene que ser menor que el máximo');
       if(i == 0) 
@@ -90,8 +90,8 @@ class NonLinearSlider extends StatelessWidget {
   double _sliderToConsumer(double sliderValue) {
     double val = consumerIntervals.first.min;
     int i = 0;
-    for (final nls.Interval interval in sliderIntervals) {
-      nls.Interval consumerInterval = consumerIntervals[i];
+    for (final NLSInterval interval in sliderIntervals) {
+      NLSInterval consumerInterval = consumerIntervals[i];
       if (interval.max < sliderValue)
         val = consumerInterval.max;
       else {
@@ -106,9 +106,9 @@ class NonLinearSlider extends StatelessWidget {
   }
 
   double _consumerToSlider(double consumerValue) {
-    late nls.Interval ci, si;
+    late NLSInterval ci, si;
     int index = 0;
-    for (final nls.Interval interval in consumerIntervals) {
+    for (final NLSInterval interval in consumerIntervals) {
       if (interval.max < consumerValue) {
         index++;
         continue;
