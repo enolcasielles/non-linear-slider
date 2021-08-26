@@ -4,16 +4,16 @@ Slider that works equal than the native one but instead of defining only a `min`
 a `max` value, user will be able to define as many intervals as it wants. This way slider
 will have zones where its value increase/decrease quicker or slower than others.
 
-### Example
+## Example
 The next example shows a Non Linear Slider where 3 intervals have been defined. 
 
 - First interval goes from 10 to 100 taking a 25% of the slider.
 - Second interval goes from 100 to 1000 and takes the next 50%.
-- Last interval goes from 1000 to 10000
+- Last interval goes from 1000 to 10000.
 
-(https://github.com/enolcasielles/non-linear-slider/blob/master/example.gif)
+[example](https://github.com/enolcasielles/non-linear-slider/blob/master/example.gif)
 
-### Usage
+## Usage
 Using this Widget is pretty easy. You can pass any parameter you would pass to 
 `Slider` with only one exception. Instead of passing a `min` and a `max` values 
 you should pass a `List` of `NLSInterval`, representing every interval you want to 
