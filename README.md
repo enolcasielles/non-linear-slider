@@ -11,7 +11,7 @@ The next example shows a Non Linear Slider where 3 intervals have been defined.
 - Second interval goes from 100 to 1000 and takes the next 50%.
 - Last interval goes from 1000 to 10000.
 
-[example](https://github.com/enolcasielles/non-linear-slider/blob/master/example.gif)
+![example](https://github.com/enolcasielles/non-linear-slider/blob/master/example.gif)
 
 ## Usage
 Using this Widget is pretty easy. You can pass any parameter you would pass to 
